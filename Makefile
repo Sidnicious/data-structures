@@ -1,4 +1,5 @@
-EVERYTHING = $(patsubst %.cpp,%,$(wildcard *.cpp))
+EVERYTHING = $(patsubst src/%.cpp,bin/%,$(wildcard src/*.cpp))
+EVERYTHING += $(patsubst src/%.c,bin/%_c,$(wildcard src/*.c))
 
 CXX=clang++
 CXXFLAGS +=\
@@ -20,8 +21,8 @@ CCFLAGS +=\
 
 everything: $(EVERYTHING)
 
-%_c: %.c vector.h
+bin/%_c: src/%.c src/vector.h
 	$(CC) $(CCFLAGS) -o $@ $<
 
-%: %.cpp
+bin/%: src/%.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $<
