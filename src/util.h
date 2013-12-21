@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 namespace u {
@@ -9,7 +11,7 @@ namespace u {
 }
 
 #ifdef DEBUG
-#define dlog u::log
+#define dlog(...) u::log(__VA_ARGS__)
 #else
-#define dlog
+#define dlog(...)
 #endif
